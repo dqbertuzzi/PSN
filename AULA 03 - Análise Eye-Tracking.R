@@ -3,23 +3,23 @@
 #importando dados do eyetracking
 #trocar tab por ;
 #checar separador decimal (, ou .)
-#checar linha de header/cabeçalho
-#checar se a última linha de dados é de fato de dados e não rodapé
+#checar linha de header/cabeÃ§alho
+#checar se a Ãºltima linha de dados Ã© de fato de dados e nÃ£o rodapÃ©
 
-setwd <- "" #setando diretório
+setwd <- "" #setando diretÃ³rio
 dataset <- read.table("dadosEYE.txt",header=TRUE,sep=";") #importando os dados no dataframe dataset
 
 colnames(dataset)
 
 # 1) descobrir taxa de amostragem
-# intervalo médio de tempo (em segundos) entre observações
-diff(dataset[,1]) #diferença do dado anterior
+# intervalo mÃ©dio de tempo (em segundos) entre observaÃ§Ãµes
+diff(dataset[,1]) #diferenÃ§a do dado anterior
 intervalo <- mean(diff(dataset[,1])) / 1000
 
 tx <- (1 / intervalo) #taxa de amostragem
 txnyquist <- tx / 2 #taxa de nyquist (metade da taxa de amostragem)
 
-# diâmetro da pupila
+# diÃ¢metro da pupila
 # [13] pupil diameter right
 pdireita <- dataset[,13]
 
@@ -27,7 +27,7 @@ ts.plot(pdireita)
 
 # trabalhando com missing data
 # missing data neste caso = valor zero
-# tirar os missing data repetindo o último valor
+# tirar os missing data repetindo o Ãºltimo valor
 for (i in 2:length(pdireita)){
         if (pdireita[i] == 0){
                 pdireita[i] <- pdireita[i - 1]
@@ -36,7 +36,7 @@ for (i in 2:length(pdireita)){
 
 ts.plot(pdireita)
 
-# remover picos do gráfico
+# remover picos do grÃ¡fico
 library(signal)
 #ordem do filtro = velocidade de decaimento, ordem mto grande = problema de artefatos de borda
 #passa-baixa em 1Hz
@@ -63,7 +63,7 @@ janela <- round(tx*30,0)
 # 241
 
 # 30 caselas representam 1 segundo
-# a cada segundo ele colheu 30 observações
+# a cada segundo ele colheu 30 observaÃ§Ãµes
 
 pdireitaf[1:janela] #repouso
 ciclo1 <- pdireitaf[1:(1+2*janela)] # repouso + tarefa

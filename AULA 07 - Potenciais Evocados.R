@@ -5,7 +5,7 @@ nomes <- scan('nomecanais.txt', what='string')
 HZ <- 250 #taxa de amostragem
 
 dim(sinais)
-# 45461/250 = 181.844 segundos de aquisição - 3 min de aquisição
+# 45461/250 = 181.844 segundos de aquisiÃ§Ã£o - 3 min de aquisiÃ§Ã£o
 # pra cada canal temos que filtrar esse sinal
 Ncanais <- 32
 tmax <- dim(sinais[1])
@@ -26,17 +26,17 @@ for (canal in 1:Ncanais){
 }
 ts.plot(fsinais[,5])
 
-# ANÁLISE
-#pra identificar os tempos onde aconteceram os estímulos raros
+# ANÃLISE
+#pra identificar os tempos onde aconteceram os estÃ­mulos raros
 raro <- 10
 testim <- which(trigger == raro)
 
-#pegar um trecho 100ms antes e 1000ms para cada estímulo raro
+#pegar um trecho 100ms antes e 1000ms para cada estÃ­mulo raro
 
 canal <- 25
 media <- 0
 
-# 100ms de baseline (HZ/10) e 1000ms pós estímulo (HZ)
+# 100ms de baseline (HZ/10) e 1000ms pÃ³s estÃ­mulo (HZ)
 for (i in 1:length(testim)){
         janela <- (testim[i]-HZ/10):(testim[i]+HZ)
         baseline <- (testim[i]-HZ/10:testim[i])
@@ -55,12 +55,12 @@ erpraro <- media
 frequente <- 11
 testim <- which(trigger == frequente)
 
-#pegar um trecho 100ms antes e 1000ms para cada estímulo frequente
+#pegar um trecho 100ms antes e 1000ms para cada estÃ­mulo frequente
 
 canal <- 25 #canal Pz
 media <- 0
 
-# 100ms de baseline (HZ/10) e 1000ms pós estímulo (HZ)
+# 100ms de baseline (HZ/10) e 1000ms pÃ³s estÃ­mulo (HZ)
 for (i in 1:length(testim)){
         janela <- (testim[i]-HZ/10):(testim[i]+HZ)
         baseline <- (testim[i]-HZ/10:testim[i])
@@ -74,6 +74,6 @@ abline(v=0, lty=2) #linha vertical pontilhada
 
 erpfrequente <- media
 
-# Adicionar o ERP do estímulo raro no gráfico
+# Adicionar o ERP do estÃ­mulo raro no grÃ¡fico
 
 lines((1:length(erpraro))/HZ-0.1, erpraro, col=2)

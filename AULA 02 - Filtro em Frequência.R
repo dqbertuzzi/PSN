@@ -3,9 +3,9 @@
 #Considere que um sinal foi adquirido sob uma taxa de amostragem de 100Hz.
 
 t <- 1000
-x <- numeric(t) # criação de um vetor vazio de t elementos
+x <- numeric(t) # criaÃ§Ã£o de um vetor vazio de t elementos
 
-# input de dados aleatórios no vetor vazio
+# input de dados aleatÃ³rios no vetor vazio
 for (i in 2:t){
         x[i] <- x[i-1] + rnorm(1)
 }
